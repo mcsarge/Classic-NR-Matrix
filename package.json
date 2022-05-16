@@ -1,0 +1,12 @@
+{
+    "name": "Classic-NR-Matrix",
+    "description": "LED Matrix run by Node-Red and communication with the ClassicDIY MQTT Server",
+    "version": "0.0.1",
+    "dependencies": {},
+    "node-red": {
+        "settings": {
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
+        }
+    }
+}
