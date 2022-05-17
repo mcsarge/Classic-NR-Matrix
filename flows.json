@@ -1,8 +1,40 @@
 [
     {
-        "id": "cce0334fd37d2a07",
+        "id": "4ad3e443cdc3c24d",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Examples",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8b652d685b18afbb",
+        "type": "tab",
+        "label": "Pages",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fd1063e3c4bc6fcc",
+        "type": "tab",
+        "label": "Page 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3fd0aea8fc464cb1",
+        "type": "tab",
+        "label": "Page 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0d561025dccaa477",
+        "type": "tab",
+        "label": "Page 3",
         "disabled": false,
         "info": "",
         "env": []
@@ -163,9 +195,10 @@
         "className": ""
     },
     {
-        "id": "440c866698709fd0",
+        "id": "98c0e3739875dcfa",
         "type": "text-to-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "SOC",
         "xOffset": "0",
         "yOffset": "0",
@@ -180,9 +213,9 @@
         "wires": []
     },
     {
-        "id": "37a9a774cc4c2d42",
+        "id": "432e342805a97fba",
         "type": "inject",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "props": [
             {
@@ -205,14 +238,14 @@
         "y": 80,
         "wires": [
             [
-                "997526c46c4b5434"
+                "7e697dcbf6f298fa"
             ]
         ]
     },
     {
-        "id": "997526c46c4b5434",
+        "id": "7e697dcbf6f298fa",
         "type": "function",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "func": "msg.payload = {\n    x: 10,\n    y: 10,\n    data: \"hello\",\n    rgb: \"255,0,0\"\n};\nreturn msg;",
         "outputs": 1,
@@ -227,9 +260,9 @@
         ]
     },
     {
-        "id": "9c3f90f0afcca560",
+        "id": "4bc3c1e4ab3ee36a",
         "type": "mqtt in",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "topic": "ClassicMQTT/classic/stat/readings/#",
         "qos": "2",
@@ -243,15 +276,15 @@
         "y": 160,
         "wires": [
             [
-                "a12edebc56ee1845",
-                "e9b14c0e9198683e"
+                "6f00cf87b466b424",
+                "c044937f5d2091b6"
             ]
         ]
     },
     {
-        "id": "a12edebc56ee1845",
+        "id": "6f00cf87b466b424",
         "type": "json",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "property": "payload",
         "action": "obj",
@@ -260,19 +293,23 @@
         "y": 280,
         "wires": [
             [
-                "87d7d3c95dc1654f",
-                "2fb99b52.1bc384",
-                "77f51866.d246d8",
-                "bb58c75ef46c2446",
-                "f89d5f5cb6d428b5",
-                "148cb8723fe19cff"
+                "5d05d66d0f3f29b4",
+                "75350982c72b45be",
+                "1d04391991666aaf",
+                "8a2aca2148f601c6",
+                "150394abf019bdde",
+                "c3504290b16fcc82",
+                "cbb409e81fbd1101",
+                "f0779aa5889c5868",
+                "4599300f3f5825cc",
+                "d9ad60d9a21ccb53"
             ]
         ]
     },
     {
-        "id": "87d7d3c95dc1654f",
+        "id": "5d05d66d0f3f29b4",
         "type": "change",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "BatSOC payload",
         "rules": [
             {
@@ -299,14 +336,14 @@
         "y": 280,
         "wires": [
             [
-                "440c866698709fd0"
+                "98c0e3739875dcfa"
             ]
         ]
     },
     {
-        "id": "2fb99b52.1bc384",
+        "id": "75350982c72b45be",
         "type": "change",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "WzBJr payload",
         "rules": [
             {
@@ -333,14 +370,14 @@
         "y": 460,
         "wires": [
             [
-                "cac0972ab98d248f"
+                "7e0a58dfb22c6bac"
             ]
         ]
     },
     {
-        "id": "77f51866.d246d8",
+        "id": "1d04391991666aaf",
         "type": "change",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "BatVoltage payload",
         "rules": [
             {
@@ -367,14 +404,15 @@
         "y": 360,
         "wires": [
             [
-                "66f7e7daa17b177b"
+                "6f9c6ecfa1368754"
             ]
         ]
     },
     {
-        "id": "4f4cb412747f00da",
+        "id": "c85b9e774e5153f2",
         "type": "text-to-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "Bat Current",
         "xOffset": "0",
         "yOffset": "11",
@@ -389,9 +427,10 @@
         "wires": []
     },
     {
-        "id": "66f7e7daa17b177b",
+        "id": "6f9c6ecfa1368754",
         "type": "text-to-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "Bat Volts",
         "xOffset": "0",
         "yOffset": "20",
@@ -406,25 +445,9 @@
         "wires": []
     },
     {
-        "id": "ddc3d014175ad97e",
+        "id": "c044937f5d2091b6",
         "type": "debug",
-        "z": "cce0334fd37d2a07",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "e9b14c0e9198683e",
-        "type": "debug",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "active": false,
         "tosidebar": true,
@@ -438,25 +461,10 @@
         "wires": []
     },
     {
-        "id": "ddd0e9874c14764b",
-        "type": "debug",
-        "z": "cce0334fd37d2a07",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 930,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "22f6be1a6678a156",
+        "id": "8ddd5220db56c0e6",
         "type": "refresh-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "",
         "matrix": "f3187c569c35b386",
         "x": 760,
@@ -464,9 +472,9 @@
         "wires": []
     },
     {
-        "id": "bb58c75ef46c2446",
+        "id": "8a2aca2148f601c6",
         "type": "delay",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "",
         "pauseType": "delay",
         "timeout": "250",
@@ -484,14 +492,14 @@
         "y": 580,
         "wires": [
             [
-                "22f6be1a6678a156"
+                "8ddd5220db56c0e6"
             ]
         ]
     },
     {
-        "id": "f89d5f5cb6d428b5",
+        "id": "150394abf019bdde",
         "type": "function",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "WhizbangBatCurrent",
         "func": "var value = msg.payload.WhizbangBatCurrent.toFixed(1).toString() + \"A\";\nmsg.payload = \n            {\n                //x:0, y:10,\n                data: value,\n                rgb: \"255,255,0\"\n            };\nreturn msg;",
         "outputs": 1,
@@ -503,14 +511,14 @@
         "y": 320,
         "wires": [
             [
-                "4f4cb412747f00da"
+                "c85b9e774e5153f2"
             ]
         ]
     },
     {
-        "id": "148cb8723fe19cff",
+        "id": "c3504290b16fcc82",
         "type": "function",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
         "name": "ChargeState",
         "func": "msg.topic = \"Charge State\"\nvar state = parseInt(msg.payload.ChargeState);\nswitch (state) {\n    case 0:\n        msg.payload = \"Restng\";\n        break;\n    case 3:\n        msg.payload = \"Absrb.\";\n        break;\n    case 4:\n        msg.payload = \"B MPPT\";\n        break;\n    case 5:\n        msg.payload = \"Float\";\n        break;\n    case 6:\n        msg.payload = \"F MPPT\";\n        break;\n    case 7:\n        msg.payload = \"Equal.\";\n        break;\n    case 10:\n        msg.payload = \"HyVOC\";\n        break;\n    case 18:\n        msg.payload = \"EqMPPT\";\n        break;\n    default:\n        msg.payload = \"Unknown - \" + state.toString();\n}\nreturn msg;",
         "outputs": 1,
@@ -522,14 +530,15 @@
         "y": 400,
         "wires": [
             [
-                "23b5c8dafe2a5c65"
+                "045af48cf7d02113"
             ]
         ]
     },
     {
-        "id": "23b5c8dafe2a5c65",
+        "id": "045af48cf7d02113",
         "type": "text-to-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "Text",
         "xOffset": "32",
         "yOffset": "0",
@@ -539,14 +548,15 @@
         "source": "msg.payload",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
-        "x": 950,
+        "x": 930,
         "y": 280,
         "wires": []
     },
     {
-        "id": "cac0972ab98d248f",
+        "id": "7e0a58dfb22c6bac",
         "type": "graph-to-matrix",
-        "z": "cce0334fd37d2a07",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
         "name": "",
         "rgb": "255, 255, 255",
         "rgbTick": "255, 0, 0",
@@ -557,8 +567,961 @@
         "minIn": "-100",
         "maxIn": "100",
         "matrix": "f3187c569c35b386",
-        "x": 970,
+        "x": 830,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f6e9a38ac0159a56",
+        "type": "function",
+        "z": "4ad3e443cdc3c24d",
+        "name": "SavePassPayload",
+        "func": "var local = context.get('data') || {};\nif (msg.payload === \"bump\")\n{\n    if (local.savePayload === undefined)//test exists\n    {\n        local.savePayload = 0;\n        return null;\n    }\n    else\n    {\n        msg.payload = local.savePayload;\n    }\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse \n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 740,
+        "wires": [
+            [
+                "9c003a47f93b5257"
+            ]
+        ]
+    },
+    {
+        "id": "53111cf9e8a9990d",
+        "type": "change",
+        "z": "4ad3e443cdc3c24d",
+        "name": "BatVoltage payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.BatVoltage",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Battery Volts",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "bb4669252b468845"
+            ]
+        ]
+    },
+    {
+        "id": "cbb409e81fbd1101",
+        "type": "delay",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "20",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 220,
+        "y": 640,
+        "wires": [
+            [
+                "53111cf9e8a9990d"
+            ]
+        ]
+    },
+    {
+        "id": "bb4669252b468845",
+        "type": "text-to-matrix",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
+        "name": "Bat Volts",
+        "xOffset": "34",
+        "yOffset": "20",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "msg.payload + 'V'",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 740,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "f0779aa5889c5868",
+        "type": "delay",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "b48e82d30eb79ca6",
+                "ac9d3585750bc4c6"
+            ]
+        ]
+    },
+    {
+        "id": "1c606c5bcdc0585b",
+        "type": "refresh-matrix",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
+        "name": "",
+        "matrix": "f3187c569c35b386",
+        "x": 1000,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "b48e82d30eb79ca6",
+        "type": "polygon",
+        "z": "4ad3e443cdc3c24d",
+        "d": true,
+        "name": "ClearMatrix",
+        "rgb": "0,0,0",
+        "matrix": "f3187c569c35b386",
+        "numPts": "4",
+        "zLevel": "0",
+        "savedPts": [
+            {
+                "x": -1,
+                "y": -1
+            },
+            {
+                "x": 127,
+                "y": -1
+            },
+            {
+                "x": 127,
+                "y": 63
+            },
+            {
+                "x": -1,
+                "y": 63
+            }
+        ],
+        "tempPts": [
+            {
+                "x": -1,
+                "y": -1
+            },
+            {
+                "x": 127,
+                "y": -1
+            },
+            {
+                "x": 127,
+                "y": 63
+            },
+            {
+                "x": -1,
+                "y": 63
+            }
+        ],
+        "xOffset": 0,
+        "yOffset": 0,
+        "allowDeploy": "0",
+        "filled": true,
+        "x": 890,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ac9d3585750bc4c6",
+        "type": "delay",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 620,
+        "wires": [
+            [
+                "1c606c5bcdc0585b"
+            ]
+        ]
+    },
+    {
+        "id": "4599300f3f5825cc",
+        "type": "change",
+        "z": "4ad3e443cdc3c24d",
+        "name": "BatVoltage payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.BatVoltage",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Battery Volts",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 230,
+        "y": 720,
+        "wires": [
+            [
+                "f6e9a38ac0159a56"
+            ]
+        ]
+    },
+    {
+        "id": "ba84a6e489cac41f",
+        "type": "inject",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "bump",
+        "payloadType": "str",
+        "x": 190,
+        "y": 760,
+        "wires": [
+            [
+                "f6e9a38ac0159a56"
+            ]
+        ]
+    },
+    {
+        "id": "9c003a47f93b5257",
+        "type": "debug",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "280cfdb74ab9725d",
+        "type": "text-to-matrix",
+        "z": "4ad3e443cdc3c24d",
+        "name": "Bat Volts",
+        "xOffset": "34",
+        "yOffset": "20",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "0",
+        "x": 520,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "d17cfe367ac953cc",
+        "type": "inject",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "bump",
+        "payloadType": "str",
+        "x": 190,
+        "y": 800,
+        "wires": [
+            [
+                "280cfdb74ab9725d"
+            ]
+        ]
+    },
+    {
+        "id": "e6031e1e23300a40",
+        "type": "inject",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "bump",
+        "payloadType": "str",
+        "x": 190,
+        "y": 860,
+        "wires": [
+            [
+                "8575cca8a6a2711d"
+            ]
+        ]
+    },
+    {
+        "id": "8575cca8a6a2711d",
+        "type": "refresh-matrix",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "matrix": "f3187c569c35b386",
+        "x": 540,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "e26a940ee0ceed7d",
+        "type": "inject",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "bump",
+        "payloadType": "str",
+        "x": 190,
+        "y": 900,
+        "wires": [
+            [
+                "6f8f0c6832ddb003"
+            ]
+        ]
+    },
+    {
+        "id": "26316176d90e05dc",
+        "type": "pixel-transform",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "xOffset": 0,
+        "yOffset": 0,
+        "refresh": 0,
+        "rgb": "0,255,41",
+        "x": 560,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82d3dea0ac273c75",
+        "type": "pixel-transform",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "xOffset": 0,
+        "yOffset": 0,
+        "refresh": 0,
+        "rgb": "0,255,41",
+        "x": 860,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "db17f35088c79a75",
+        "type": "function",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 800,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6f8f0c6832ddb003",
+        "type": "clear-matrix",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "matrix": "f3187c569c35b386",
+        "x": 550,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "b7e16fabe53e0319",
+        "type": "inject",
+        "z": "4ad3e443cdc3c24d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "clear",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "clear",
+        "payload": "clear",
+        "payloadType": "str",
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "f6e9a38ac0159a56"
+            ]
+        ]
+    },
+    {
+        "id": "d9ad60d9a21ccb53",
+        "type": "link out",
+        "z": "4ad3e443cdc3c24d",
+        "name": "MQTT Data",
+        "mode": "link",
+        "links": [
+            "87767fc1fa7e8810"
+        ],
+        "x": 435,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "87767fc1fa7e8810",
+        "type": "link in",
+        "z": "8b652d685b18afbb",
+        "name": "MQTT Data In",
+        "links": [
+            "d9ad60d9a21ccb53"
+        ],
+        "x": 155,
+        "y": 60,
+        "wires": [
+            [
+                "f3b7683138e63abf",
+                "35e571fcc68461b4",
+                "875f186a47c10c02"
+            ]
+        ]
+    },
+    {
+        "id": "a590781eb9b8ab8f",
+        "type": "inject",
+        "z": "8b652d685b18afbb",
+        "name": "PageChangePulse",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "6",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "toggle",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "1fedefa2175797c6"
+            ]
+        ]
+    },
+    {
+        "id": "1fedefa2175797c6",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "func": "var local = context.get('data') || {};\nif (local.whichPage === undefined) {\n    local.whichPage = 1;\n}\nelse {\n    local.whichPage = local.whichPage + 1;\n    if (local.whichPage >= 4)\n    {\n        local.whichPage = 1\n    }\n}\ncontext.set('data', local);\n\nvar msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\n\nswitch (local.whichPage) {\n    case 1:\n        msg1.payload = \"display\";\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { clear: true, payload: \"clear\" };\n        break;\n    case 2:\n        msg1 = {clear:true, payload: \"clear\"};\n        msg2 = { payload: \"display\"};\n        msg3 = { clear: true, payload: \"clear\" };\n        break;\n    case 3:\n        msg1 = { clear: true, payload: \"clear\" };\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { payload: \"display\" };\n        break;\n}\n\nreturn [msg1, msg2, msg3];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 300,
+        "wires": [
+            [
+                "f3b7683138e63abf"
+            ],
+            [
+                "35e571fcc68461b4"
+            ],
+            [
+                "875f186a47c10c02",
+                "97b731f8db0fd682"
+            ]
+        ]
+    },
+    {
+        "id": "f3b7683138e63abf",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "SavePassPayload",
+        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    msg.payload = local.savePayload;\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "6bc5d4a374342661"
+            ]
+        ]
+    },
+    {
+        "id": "35e571fcc68461b4",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "SavePassPayload",
+        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    msg.payload = local.savePayload;\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 320,
+        "wires": [
+            [
+                "eac2da72e56668f2"
+            ]
+        ]
+    },
+    {
+        "id": "875f186a47c10c02",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "SavePassPayload",
+        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    msg.payload = local.savePayload;\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "101a3ee56c2cb3ea"
+            ]
+        ]
+    },
+    {
+        "id": "93e53f753cd5db11",
+        "type": "refresh-matrix",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "matrix": "f3187c569c35b386",
+        "x": 840,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "97b731f8db0fd682",
+        "type": "delay",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "250",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 530,
+        "y": 400,
+        "wires": [
+            [
+                "93e53f753cd5db11"
+            ]
+        ]
+    },
+    {
+        "id": "6bc5d4a374342661",
+        "type": "link out",
+        "z": "8b652d685b18afbb",
+        "name": "Page 1",
+        "mode": "link",
+        "links": [
+            "493bbdb172abe6ca"
+        ],
+        "x": 705,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "eac2da72e56668f2",
+        "type": "link out",
+        "z": "8b652d685b18afbb",
+        "name": "Page 2",
+        "mode": "link",
+        "links": [
+            "64ac53a522db8b6b"
+        ],
+        "x": 705,
         "y": 320,
         "wires": []
+    },
+    {
+        "id": "101a3ee56c2cb3ea",
+        "type": "link out",
+        "z": "8b652d685b18afbb",
+        "name": "Page 3",
+        "mode": "link",
+        "links": [
+            "4853c9b59c276f54"
+        ],
+        "x": 705,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6cb07edad23399c4",
+        "type": "text-to-matrix",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "Page 1 Battery",
+        "xOffset": "4",
+        "yOffset": "0",
+        "rgb": "255,255,255",
+        "font": "7x13.bdf",
+        "prefix": "",
+        "source": "\"Bat.\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 460,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "836b141eddf68ed6",
+        "type": "change",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "BatSOC payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.SOC",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "SOC",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 180,
+        "wires": [
+            [
+                "98b16eb891cbfe48"
+            ]
+        ]
+    },
+    {
+        "id": "98b16eb891cbfe48",
+        "type": "text-to-matrix",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "SOC",
+        "xOffset": "34",
+        "yOffset": "0",
+        "rgb": "255,255,255",
+        "font": "7x13B.bdf",
+        "prefix": "",
+        "source": "msg.payload + \"%\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 830,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fdbd8e38af6886f5",
+        "type": "change",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "BatVoltage payload",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.BatVoltage",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Battery Volts",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "e7cfb23ec1828527"
+            ]
+        ]
+    },
+    {
+        "id": "e7cfb23ec1828527",
+        "type": "text-to-matrix",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "Bat Volts",
+        "xOffset": "12",
+        "yOffset": "15",
+        "rgb": "255,255,255",
+        "font": "7x13B.bdf",
+        "prefix": "",
+        "source": "msg.payload + \"V\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "0",
+        "x": 700,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "493bbdb172abe6ca",
+        "type": "link in",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "Page 1 In",
+        "links": [
+            "6bc5d4a374342661"
+        ],
+        "x": 145,
+        "y": 180,
+        "wires": [
+            [
+                "6cb07edad23399c4",
+                "836b141eddf68ed6",
+                "fdbd8e38af6886f5"
+            ]
+        ]
+    },
+    {
+        "id": "2db16b8e787b901b",
+        "type": "function",
+        "z": "3fd0aea8fc464cb1",
+        "name": "WhizbangBatCurrent",
+        "func": "\nif (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = msg.payload.WhizbangBatCurrent.toFixed(1).toString() + \"A\";\nmsg.payload = \n            {\n                //x:0, y:10,\n                data: value,\n                rgb: \"255,255,0\"\n            };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "a7348b676091f241"
+            ]
+        ]
+    },
+    {
+        "id": "a7348b676091f241",
+        "type": "text-to-matrix",
+        "z": "3fd0aea8fc464cb1",
+        "name": "Bat Current",
+        "xOffset": "12",
+        "yOffset": "11",
+        "rgb": "255,255,255",
+        "font": "7x13B.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e83e31428c8c3b15",
+        "type": "text-to-matrix",
+        "z": "3fd0aea8fc464cb1",
+        "name": "Page",
+        "xOffset": "0",
+        "yOffset": "0",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "\"Current\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "64ac53a522db8b6b",
+        "type": "link in",
+        "z": "3fd0aea8fc464cb1",
+        "name": "Page 2 In",
+        "links": [
+            "eac2da72e56668f2"
+        ],
+        "x": 145,
+        "y": 140,
+        "wires": [
+            [
+                "2db16b8e787b901b",
+                "e83e31428c8c3b15"
+            ]
+        ]
+    },
+    {
+        "id": "73a292ef1fe830f4",
+        "type": "text-to-matrix",
+        "z": "0d561025dccaa477",
+        "name": "Page",
+        "xOffset": "32",
+        "yOffset": "0",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "\"3\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 710,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "4853c9b59c276f54",
+        "type": "link in",
+        "z": "0d561025dccaa477",
+        "name": "Page 3 In",
+        "links": [
+            "101a3ee56c2cb3ea"
+        ],
+        "x": 175,
+        "y": 220,
+        "wires": [
+            [
+                "73a292ef1fe830f4"
+            ]
+        ]
     }
 ]
