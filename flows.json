@@ -1,16 +1,8 @@
 [
     {
-        "id": "4ad3e443cdc3c24d",
-        "type": "tab",
-        "label": "Examples",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "8b652d685b18afbb",
         "type": "tab",
-        "label": "Pages",
+        "label": "Page Rotator",
         "disabled": false,
         "info": "",
         "env": []
@@ -193,910 +185,6 @@
         "width": "6",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "98c0e3739875dcfa",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "SOC",
-        "xOffset": "0",
-        "yOffset": "0",
-        "rgb": "255,255,255",
-        "font": "6x13.bdf",
-        "prefix": "",
-        "source": "msg.payload + '%'",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "",
-        "x": 790,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "432e342805a97fba",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "config.X",
-                "v": "10",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "Test",
-        "payloadType": "str",
-        "x": 150,
-        "y": 80,
-        "wires": [
-            [
-                "7e697dcbf6f298fa"
-            ]
-        ]
-    },
-    {
-        "id": "7e697dcbf6f298fa",
-        "type": "function",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "func": "msg.payload = {\n    x: 10,\n    y: 10,\n    data: \"hello\",\n    rgb: \"255,0,0\"\n};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4bc3c1e4ab3ee36a",
-        "type": "mqtt in",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "topic": "ClassicMQTT/classic/stat/readings/#",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "900b995987962dbb",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 160,
-        "y": 160,
-        "wires": [
-            [
-                "6f00cf87b466b424",
-                "c044937f5d2091b6"
-            ]
-        ]
-    },
-    {
-        "id": "6f00cf87b466b424",
-        "type": "json",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 130,
-        "y": 280,
-        "wires": [
-            [
-                "5d05d66d0f3f29b4",
-                "75350982c72b45be",
-                "1d04391991666aaf",
-                "8a2aca2148f601c6",
-                "150394abf019bdde",
-                "c3504290b16fcc82",
-                "cbb409e81fbd1101",
-                "f0779aa5889c5868",
-                "4599300f3f5825cc",
-                "d9ad60d9a21ccb53"
-            ]
-        ]
-    },
-    {
-        "id": "5d05d66d0f3f29b4",
-        "type": "change",
-        "z": "4ad3e443cdc3c24d",
-        "name": "BatSOC payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.SOC",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "SOC",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 530,
-        "y": 280,
-        "wires": [
-            [
-                "98c0e3739875dcfa"
-            ]
-        ]
-    },
-    {
-        "id": "75350982c72b45be",
-        "type": "change",
-        "z": "4ad3e443cdc3c24d",
-        "name": "WzBJr payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.WhizbangBatCurrent",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Battery Current",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 520,
-        "y": 460,
-        "wires": [
-            [
-                "7e0a58dfb22c6bac"
-            ]
-        ]
-    },
-    {
-        "id": "1d04391991666aaf",
-        "type": "change",
-        "z": "4ad3e443cdc3c24d",
-        "name": "BatVoltage payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.BatVoltage",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Battery Volts",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 530,
-        "y": 360,
-        "wires": [
-            [
-                "6f9c6ecfa1368754"
-            ]
-        ]
-    },
-    {
-        "id": "c85b9e774e5153f2",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "Bat Current",
-        "xOffset": "0",
-        "yOffset": "11",
-        "rgb": "255,255,255",
-        "font": "6x10.bdf",
-        "prefix": "",
-        "source": "msg.payload",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "",
-        "x": 810,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "6f9c6ecfa1368754",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "Bat Volts",
-        "xOffset": "0",
-        "yOffset": "20",
-        "rgb": "255,255,255",
-        "font": "6x10.bdf",
-        "prefix": "",
-        "source": "msg.payload + 'V'",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "",
-        "x": 800,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "c044937f5d2091b6",
-        "type": "debug",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 470,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "8ddd5220db56c0e6",
-        "type": "refresh-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "",
-        "matrix": "f3187c569c35b386",
-        "x": 760,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "8a2aca2148f601c6",
-        "type": "delay",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "250",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 510,
-        "y": 580,
-        "wires": [
-            [
-                "8ddd5220db56c0e6"
-            ]
-        ]
-    },
-    {
-        "id": "150394abf019bdde",
-        "type": "function",
-        "z": "4ad3e443cdc3c24d",
-        "name": "WhizbangBatCurrent",
-        "func": "var value = msg.payload.WhizbangBatCurrent.toFixed(1).toString() + \"A\";\nmsg.payload = \n            {\n                //x:0, y:10,\n                data: value,\n                rgb: \"255,255,0\"\n            };\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 540,
-        "y": 320,
-        "wires": [
-            [
-                "c85b9e774e5153f2"
-            ]
-        ]
-    },
-    {
-        "id": "c3504290b16fcc82",
-        "type": "function",
-        "z": "4ad3e443cdc3c24d",
-        "name": "ChargeState",
-        "func": "msg.topic = \"Charge State\"\nvar state = parseInt(msg.payload.ChargeState);\nswitch (state) {\n    case 0:\n        msg.payload = \"Restng\";\n        break;\n    case 3:\n        msg.payload = \"Absrb.\";\n        break;\n    case 4:\n        msg.payload = \"B MPPT\";\n        break;\n    case 5:\n        msg.payload = \"Float\";\n        break;\n    case 6:\n        msg.payload = \"F MPPT\";\n        break;\n    case 7:\n        msg.payload = \"Equal.\";\n        break;\n    case 10:\n        msg.payload = \"HyVOC\";\n        break;\n    case 18:\n        msg.payload = \"EqMPPT\";\n        break;\n    default:\n        msg.payload = \"Unknown - \" + state.toString();\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 510,
-        "y": 400,
-        "wires": [
-            [
-                "045af48cf7d02113"
-            ]
-        ]
-    },
-    {
-        "id": "045af48cf7d02113",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "Text",
-        "xOffset": "32",
-        "yOffset": "0",
-        "rgb": "255,255,255",
-        "font": "5x8.bdf",
-        "prefix": "",
-        "source": "msg.payload",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "",
-        "x": 930,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "7e0a58dfb22c6bac",
-        "type": "graph-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "",
-        "rgb": "255, 255, 255",
-        "rgbTick": "255, 0, 0",
-        "xOffset": "32",
-        "yOffset": "9",
-        "height": "22",
-        "width": "30",
-        "minIn": "-100",
-        "maxIn": "100",
-        "matrix": "f3187c569c35b386",
-        "x": 830,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "f6e9a38ac0159a56",
-        "type": "function",
-        "z": "4ad3e443cdc3c24d",
-        "name": "SavePassPayload",
-        "func": "var local = context.get('data') || {};\nif (msg.payload === \"bump\")\n{\n    if (local.savePayload === undefined)//test exists\n    {\n        local.savePayload = 0;\n        return null;\n    }\n    else\n    {\n        msg.payload = local.savePayload;\n    }\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse \n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 570,
-        "y": 740,
-        "wires": [
-            [
-                "9c003a47f93b5257"
-            ]
-        ]
-    },
-    {
-        "id": "53111cf9e8a9990d",
-        "type": "change",
-        "z": "4ad3e443cdc3c24d",
-        "name": "BatVoltage payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.BatVoltage",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Battery Volts",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 470,
-        "y": 680,
-        "wires": [
-            [
-                "bb4669252b468845"
-            ]
-        ]
-    },
-    {
-        "id": "cbb409e81fbd1101",
-        "type": "delay",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "20",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 220,
-        "y": 640,
-        "wires": [
-            [
-                "53111cf9e8a9990d"
-            ]
-        ]
-    },
-    {
-        "id": "bb4669252b468845",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "Bat Volts",
-        "xOffset": "34",
-        "yOffset": "20",
-        "rgb": "255,255,255",
-        "font": "6x10.bdf",
-        "prefix": "",
-        "source": "msg.payload + 'V'",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "",
-        "x": 740,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "f0779aa5889c5868",
-        "type": "delay",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "3",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 500,
-        "y": 620,
-        "wires": [
-            [
-                "b48e82d30eb79ca6",
-                "ac9d3585750bc4c6"
-            ]
-        ]
-    },
-    {
-        "id": "1c606c5bcdc0585b",
-        "type": "refresh-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "",
-        "matrix": "f3187c569c35b386",
-        "x": 1000,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "b48e82d30eb79ca6",
-        "type": "polygon",
-        "z": "4ad3e443cdc3c24d",
-        "d": true,
-        "name": "ClearMatrix",
-        "rgb": "0,0,0",
-        "matrix": "f3187c569c35b386",
-        "numPts": "4",
-        "zLevel": "0",
-        "savedPts": [
-            {
-                "x": -1,
-                "y": -1
-            },
-            {
-                "x": 127,
-                "y": -1
-            },
-            {
-                "x": 127,
-                "y": 63
-            },
-            {
-                "x": -1,
-                "y": 63
-            }
-        ],
-        "tempPts": [
-            {
-                "x": -1,
-                "y": -1
-            },
-            {
-                "x": 127,
-                "y": -1
-            },
-            {
-                "x": 127,
-                "y": 63
-            },
-            {
-                "x": -1,
-                "y": 63
-            }
-        ],
-        "xOffset": 0,
-        "yOffset": 0,
-        "allowDeploy": "0",
-        "filled": true,
-        "x": 890,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "ac9d3585750bc4c6",
-        "type": "delay",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "250",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 620,
-        "wires": [
-            [
-                "1c606c5bcdc0585b"
-            ]
-        ]
-    },
-    {
-        "id": "4599300f3f5825cc",
-        "type": "change",
-        "z": "4ad3e443cdc3c24d",
-        "name": "BatVoltage payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.BatVoltage",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Battery Volts",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 230,
-        "y": 720,
-        "wires": [
-            [
-                "f6e9a38ac0159a56"
-            ]
-        ]
-    },
-    {
-        "id": "ba84a6e489cac41f",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "bump",
-        "payloadType": "str",
-        "x": 190,
-        "y": 760,
-        "wires": [
-            [
-                "f6e9a38ac0159a56"
-            ]
-        ]
-    },
-    {
-        "id": "9c003a47f93b5257",
-        "type": "debug",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 870,
-        "y": 760,
-        "wires": []
-    },
-    {
-        "id": "280cfdb74ab9725d",
-        "type": "text-to-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "name": "Bat Volts",
-        "xOffset": "34",
-        "yOffset": "20",
-        "rgb": "255,255,255",
-        "font": "6x10.bdf",
-        "prefix": "",
-        "source": "msg.payload",
-        "matrix": "f3187c569c35b386",
-        "zLevel": "0",
-        "x": 520,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "d17cfe367ac953cc",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "bump",
-        "payloadType": "str",
-        "x": 190,
-        "y": 800,
-        "wires": [
-            [
-                "280cfdb74ab9725d"
-            ]
-        ]
-    },
-    {
-        "id": "e6031e1e23300a40",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "bump",
-        "payloadType": "str",
-        "x": 190,
-        "y": 860,
-        "wires": [
-            [
-                "8575cca8a6a2711d"
-            ]
-        ]
-    },
-    {
-        "id": "8575cca8a6a2711d",
-        "type": "refresh-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "matrix": "f3187c569c35b386",
-        "x": 540,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "e26a940ee0ceed7d",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "bump",
-        "payloadType": "str",
-        "x": 190,
-        "y": 900,
-        "wires": [
-            [
-                "6f8f0c6832ddb003"
-            ]
-        ]
-    },
-    {
-        "id": "26316176d90e05dc",
-        "type": "pixel-transform",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "xOffset": 0,
-        "yOffset": 0,
-        "refresh": 0,
-        "rgb": "0,255,41",
-        "x": 560,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "82d3dea0ac273c75",
-        "type": "pixel-transform",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "xOffset": 0,
-        "yOffset": 0,
-        "refresh": 0,
-        "rgb": "0,255,41",
-        "x": 860,
-        "y": 860,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "db17f35088c79a75",
-        "type": "function",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 800,
-        "y": 960,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6f8f0c6832ddb003",
-        "type": "clear-matrix",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "matrix": "f3187c569c35b386",
-        "x": 550,
-        "y": 1060,
-        "wires": []
-    },
-    {
-        "id": "b7e16fabe53e0319",
-        "type": "inject",
-        "z": "4ad3e443cdc3c24d",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            },
-            {
-                "p": "clear",
-                "v": "true",
-                "vt": "bool"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "clear",
-        "payload": "clear",
-        "payloadType": "str",
-        "x": 140,
-        "y": 520,
-        "wires": [
-            [
-                "f6e9a38ac0159a56"
-            ]
-        ]
-    },
-    {
-        "id": "d9ad60d9a21ccb53",
-        "type": "link out",
-        "z": "4ad3e443cdc3c24d",
-        "name": "MQTT Data",
-        "mode": "link",
-        "links": [
-            "87767fc1fa7e8810"
-        ],
-        "x": 435,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "87767fc1fa7e8810",
-        "type": "link in",
-        "z": "8b652d685b18afbb",
-        "name": "MQTT Data In",
-        "links": [
-            "d9ad60d9a21ccb53"
-        ],
-        "x": 155,
-        "y": 60,
-        "wires": [
-            [
-                "f3b7683138e63abf",
-                "35e571fcc68461b4",
-                "875f186a47c10c02"
-            ]
-        ]
     },
     {
         "id": "a590781eb9b8ab8f",
@@ -1285,16 +373,72 @@
         "wires": []
     },
     {
+        "id": "eaa8f1b3a8feb154",
+        "type": "mqtt in",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "topic": "ClassicMQTT/classic/stat/readings/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "900b995987962dbb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 160,
+        "y": 100,
+        "wires": [
+            [
+                "4e07bf221bec0efe"
+            ]
+        ]
+    },
+    {
+        "id": "4e07bf221bec0efe",
+        "type": "json",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "f3b7683138e63abf",
+                "35e571fcc68461b4",
+                "875f186a47c10c02",
+                "84e838ef8baaff25"
+            ]
+        ]
+    },
+    {
+        "id": "84e838ef8baaff25",
+        "type": "debug",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 180,
+        "wires": []
+    },
+    {
         "id": "6cb07edad23399c4",
         "type": "text-to-matrix",
         "z": "fd1063e3c4bc6fcc",
         "name": "Page 1 Battery",
-        "xOffset": "4",
+        "xOffset": "0",
         "yOffset": "0",
         "rgb": "255,255,255",
-        "font": "7x13.bdf",
+        "font": "6x10.bdf",
         "prefix": "",
-        "source": "\"Bat.\"",
+        "source": "\"Battery\"",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
         "x": 460,
@@ -1302,105 +446,37 @@
         "wires": []
     },
     {
-        "id": "836b141eddf68ed6",
-        "type": "change",
-        "z": "fd1063e3c4bc6fcc",
-        "name": "BatSOC payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.SOC",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "SOC",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 630,
-        "y": 180,
-        "wires": [
-            [
-                "98b16eb891cbfe48"
-            ]
-        ]
-    },
-    {
         "id": "98b16eb891cbfe48",
         "type": "text-to-matrix",
         "z": "fd1063e3c4bc6fcc",
         "name": "SOC",
-        "xOffset": "34",
-        "yOffset": "0",
+        "xOffset": "5",
+        "yOffset": "8",
         "rgb": "255,255,255",
         "font": "7x13B.bdf",
         "prefix": "",
-        "source": "msg.payload + \"%\"",
+        "source": "msg.payload",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
-        "x": 830,
+        "x": 630,
         "y": 180,
         "wires": []
-    },
-    {
-        "id": "fdbd8e38af6886f5",
-        "type": "change",
-        "z": "fd1063e3c4bc6fcc",
-        "name": "BatVoltage payload",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.BatVoltage",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Battery Volts",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 510,
-        "y": 260,
-        "wires": [
-            [
-                "e7cfb23ec1828527"
-            ]
-        ]
     },
     {
         "id": "e7cfb23ec1828527",
         "type": "text-to-matrix",
         "z": "fd1063e3c4bc6fcc",
         "name": "Bat Volts",
-        "xOffset": "12",
-        "yOffset": "15",
+        "xOffset": "5",
+        "yOffset": "20",
         "rgb": "255,255,255",
         "font": "7x13B.bdf",
         "prefix": "",
-        "source": "msg.payload + \"V\"",
+        "source": "msg.payload",
         "matrix": "f3187c569c35b386",
         "zLevel": "0",
-        "x": 700,
-        "y": 260,
+        "x": 640,
+        "y": 240,
         "wires": []
     },
     {
@@ -1416,8 +492,46 @@
         "wires": [
             [
                 "6cb07edad23399c4",
-                "836b141eddf68ed6",
-                "fdbd8e38af6886f5"
+                "7f06e7199015ba03",
+                "55a160be56c8a705"
+            ]
+        ]
+    },
+    {
+        "id": "7f06e7199015ba03",
+        "type": "function",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "BatVolt",
+        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.BatVoltage);\nvar rgbVal = \"255,255,255\"\nif (value>=24.8){\n    rgbVal = \"0,255,0\";\n} else if (value >= 24.0){\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"V\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "e7cfb23ec1828527"
+            ]
+        ]
+    },
+    {
+        "id": "55a160be56c8a705",
+        "type": "function",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "BatSOC",
+        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.SOC);\nvar rgbVal = \"255,255,255\"\nif (value>=90.0){\n    rgbVal = \"0,255,0\";\n} else if (value >= 80.0){\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(0).toString() + \"%\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "98b16eb891cbfe48"
             ]
         ]
     },
@@ -1426,7 +540,7 @@
         "type": "function",
         "z": "3fd0aea8fc464cb1",
         "name": "WhizbangBatCurrent",
-        "func": "\nif (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = msg.payload.WhizbangBatCurrent.toFixed(1).toString() + \"A\";\nmsg.payload = \n            {\n                //x:0, y:10,\n                data: value,\n                rgb: \"255,255,0\"\n            };\nreturn msg;",
+        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value = parseFloat(msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\"\nif (value >= 0.0) {\n    rgbVal = \"0,255,0\";\n} else if (value >= -50.0) {\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"A\";\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1445,8 +559,8 @@
         "type": "text-to-matrix",
         "z": "3fd0aea8fc464cb1",
         "name": "Bat Current",
-        "xOffset": "12",
-        "yOffset": "11",
+        "xOffset": "5",
+        "yOffset": "8",
         "rgb": "255,255,255",
         "font": "7x13B.bdf",
         "prefix": "",
@@ -1461,7 +575,7 @@
         "id": "e83e31428c8c3b15",
         "type": "text-to-matrix",
         "z": "3fd0aea8fc464cb1",
-        "name": "Page",
+        "name": "Page 2 - Current",
         "xOffset": "0",
         "yOffset": "0",
         "rgb": "255,255,255",
@@ -1470,8 +584,8 @@
         "source": "\"Current\"",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
-        "x": 590,
-        "y": 60,
+        "x": 450,
+        "y": 80,
         "wires": []
     },
     {
@@ -1487,25 +601,62 @@
         "wires": [
             [
                 "2db16b8e787b901b",
-                "e83e31428c8c3b15"
+                "e83e31428c8c3b15",
+                "194033c87fd90454"
             ]
         ]
+    },
+    {
+        "id": "194033c87fd90454",
+        "type": "function",
+        "z": "3fd0aea8fc464cb1",
+        "name": "BatWattsCalc",
+        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value  = 0.0 + (msg.payload.BatVoltage * msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\"\nif (value >= 0.0) {\n    rgbVal = \"0,255,0\";\n} else if (value >= -1400.0) {\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"W\";\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "debfbc83d1987e14"
+            ]
+        ]
+    },
+    {
+        "id": "debfbc83d1987e14",
+        "type": "text-to-matrix",
+        "z": "3fd0aea8fc464cb1",
+        "name": "Watts",
+        "xOffset": "5",
+        "yOffset": "20",
+        "rgb": "255,255,255",
+        "font": "7x13B.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 690,
+        "y": 200,
+        "wires": []
     },
     {
         "id": "73a292ef1fe830f4",
         "type": "text-to-matrix",
         "z": "0d561025dccaa477",
-        "name": "Page",
-        "xOffset": "32",
+        "name": "Page 3 - Charge State",
+        "xOffset": "0",
         "yOffset": "0",
         "rgb": "255,255,255",
         "font": "6x10.bdf",
         "prefix": "",
-        "source": "\"3\"",
+        "source": "\"Charge St.\"",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
-        "x": 710,
-        "y": 100,
+        "x": 560,
+        "y": 80,
         "wires": []
     },
     {
@@ -1520,8 +671,87 @@
         "y": 220,
         "wires": [
             [
-                "73a292ef1fe830f4"
+                "73a292ef1fe830f4",
+                "febd80e53f43db86"
             ]
         ]
+    },
+    {
+        "id": "febd80e53f43db86",
+        "type": "function",
+        "z": "0d561025dccaa477",
+        "name": "ChargeState",
+        "func": "var floatMsg = {};\n\nif (msg.payload === \"clear\") {\n    return [msg, msg];\n}\nvar state = parseInt(msg.payload.ChargeState);\nvar stateStr = \"\";\nvar rgbVal = \"255,255,255\"\n\nswitch (state) {\n    case 0:\n        stateStr = \"Resting\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 3:\n        stateStr = \"Absorb\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 4:\n        stateStr = \"Bl-MPPT\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 5:\n        var floatSecs = parseInt(msg.payload.FloatTimeTodaySeconds);\n        stateStr = \"Float\";\n        rgbVal = \"0,255,0\";\n        //floatSecs = (60*60*12)+(34*60)\n        if (floatSecs > 60) {\n            if (floatSecs > (60*60)){\n                var floatTime = (floatSecs / (60.0 * 60.0)).toFixed(1).toString() + ' hrs';\n            } else {\n                var floatTime = (floatSecs / 60.0).toFixed(0).toString() + ' min';\n            }\n            floatMsg.payload = {\n                data: floatTime,   \n               rgb: \"0,255,0\"\n            }\n        }\n        break;\n    case 6:\n        stateStr = \"Fl-MPPT\";\n        rgbVal = \"0,255,255\";\n        break;\n    case 7:\n        stateStr = \"Equal.\";\n        rgbVal = \"255,0.0\";\n        break;\n    case 10:\n        stateStr = \"HyprVOC\";\n        rgbVal = \"255,0.0\";\n        break;\n    case 18:\n        stateStr = \"Eq-MPPT\";\n        rgbVal = \"255,0.0\";\n        break;\n    default:\n        stateStr = \"Unk-\" + state.toString();\n        rgbVal = \"255,0.0\";\n}\nmsg.payload =\n{\n    data: stateStr,\n    rgb: rgbVal\n};\nreturn [msg,floatMsg];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "29adb1c7147b537d"
+            ],
+            [
+                "7a801ce3c535e007",
+                "b8263db3edd13503"
+            ]
+        ],
+        "outputLabels": [
+            "main",
+            "float"
+        ]
+    },
+    {
+        "id": "29adb1c7147b537d",
+        "type": "text-to-matrix",
+        "z": "0d561025dccaa477",
+        "name": "Charge State",
+        "xOffset": "5",
+        "yOffset": "10",
+        "rgb": "255,255,255",
+        "font": "7x13B.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 690,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "7a801ce3c535e007",
+        "type": "text-to-matrix",
+        "z": "0d561025dccaa477",
+        "name": "Float Hours",
+        "xOffset": "15",
+        "yOffset": "23",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b8263db3edd13503",
+        "type": "debug",
+        "z": "0d561025dccaa477",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 380,
+        "wires": []
     }
 ]
