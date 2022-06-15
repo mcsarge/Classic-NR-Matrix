@@ -32,6 +32,22 @@
         "env": []
     },
     {
+        "id": "54a21ce66a54310a",
+        "type": "tab",
+        "label": "Page 4 (optional)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4d600d71ebf56760",
+        "type": "tab",
+        "label": "Message Injector",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f3187c569c35b386",
         "type": "led-matrix",
         "height": "32",
@@ -48,9 +64,9 @@
     {
         "id": "900b995987962dbb",
         "type": "mqtt-broker",
-        "name": "UsingNGROK",
-        "broker": "0.tcp.ngrok.io",
-        "port": "10176",
+        "name": "glaserisland",
+        "broker": "remotepi.glaserisland.pertino.net",
+        "port": "1883",
         "clientid": "",
         "autoConnect": true,
         "usetls": false,
@@ -88,7 +104,8 @@
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
@@ -178,7 +195,7 @@
     {
         "id": "86eedad9b66f38a7",
         "type": "ui_group",
-        "name": "Default",
+        "name": "Send Message",
         "tab": "8ffbdfea25a9910c",
         "order": 1,
         "disp": true,
@@ -220,24 +237,27 @@
         "type": "function",
         "z": "8b652d685b18afbb",
         "name": "",
-        "func": "var local = context.get('data') || {};\nif (local.whichPage === undefined) {\n    local.whichPage = 1;\n}\nelse {\n    local.whichPage = local.whichPage + 1;\n    if (local.whichPage >= 4)\n    {\n        local.whichPage = 1\n    }\n}\ncontext.set('data', local);\n\nvar msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\n\nswitch (local.whichPage) {\n    case 1:\n        msg1.payload = \"display\";\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { clear: true, payload: \"clear\" };\n        break;\n    case 2:\n        msg1 = {clear:true, payload: \"clear\"};\n        msg2 = { payload: \"display\"};\n        msg3 = { clear: true, payload: \"clear\" };\n        break;\n    case 3:\n        msg1 = { clear: true, payload: \"clear\" };\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { payload: \"display\" };\n        break;\n}\n\nreturn [msg1, msg2, msg3];",
-        "outputs": 3,
+        "func": "var rxMessage = global.get(\"rxMessage\"); \nvar local = context.get('data') || {};\nif (local.whichPage === undefined) {\n    local.whichPage = 4;\n}\nelse {\n    local.whichPage = local.whichPage + 1;\n    if ((local.whichPage >= (rxMessage?5:4)))\n    {\n        local.whichPage = 1\n    }\n}\ncontext.set('data', local);\n\nvar msg1 = {};\nvar msg2 = {};\nvar msg3 = {};\nvar msg4 = {};\n\nswitch (local.whichPage) {\n    case 1:\n        msg1.payload = \"display\";\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { clear: true, payload: \"clear\" };\n        msg4 = { clear: true, payload: \"clear\" };\n        break;\n    case 2:\n        msg1 = {clear:true, payload: \"clear\"};\n        msg2 = { payload: \"display\"};\n        msg3 = { clear: true, payload: \"clear\" };\n        msg4 = { clear: true, payload: \"clear\" };\n        break;\n    case 3:\n        msg1 = { clear: true, payload: \"clear\" };\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { payload: \"display\" };\n        msg4 = { clear: true, payload: \"clear\" };\n        break;\n    case 4:\n        msg1 = { clear: true, payload: \"clear\" };\n        msg2 = { clear: true, payload: \"clear\" };\n        msg3 = { clear: true, payload: \"clear\" };\n        msg4 = { payload: \"display\" };\n        break;\n}\n\nreturn [msg1, msg2, msg3, msg4];",
+        "outputs": 4,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 300,
+        "x": 220,
+        "y": 320,
         "wires": [
             [
-                "f3b7683138e63abf"
+                "f3b7683138e63abf",
+                "97b731f8db0fd682"
             ],
             [
                 "35e571fcc68461b4"
             ],
             [
-                "875f186a47c10c02",
-                "97b731f8db0fd682"
+                "875f186a47c10c02"
+            ],
+            [
+                "98e85dbc08771399"
             ]
         ]
     },
@@ -304,8 +324,8 @@
         "z": "8b652d685b18afbb",
         "name": "",
         "matrix": "f3187c569c35b386",
-        "x": 840,
-        "y": 400,
+        "x": 780,
+        "y": 240,
         "wires": []
     },
     {
@@ -326,7 +346,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 530,
-        "y": 400,
+        "y": 240,
         "wires": [
             [
                 "93e53f753cd5db11"
@@ -389,7 +409,8 @@
         "y": 100,
         "wires": [
             [
-                "4e07bf221bec0efe"
+                "4e07bf221bec0efe",
+                "e3be348048dbf72d"
             ]
         ]
     },
@@ -417,7 +438,7 @@
         "type": "debug",
         "z": "8b652d685b18afbb",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -426,6 +447,142 @@
         "statusType": "auto",
         "x": 590,
         "y": 180,
+        "wires": []
+    },
+    {
+        "id": "98e85dbc08771399",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "SavePassPayload",
+        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n    local.timestamp = new Date();\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    //Check if too much time has gone by\n    var nowtime = new Date();\n    let timeDifference = Math.abs(nowtime.getTime() - local.timestamp.getTime());\n\n    if (timeDifference> (1000 * 60 * local.savePayload.displayTime)){\n        //Message has been up for long enough\n        global.set(\"rxMessage\", false);\n        msg.clear = true;\n    }\n    msg.payload = \n    {\n        //line1: \"days:\" + timeDifference / (1000 * 3600 * 24),\n        //data: \"mins:\" + (timeDifference / (1000 * 60)).toFixed(1) + \"/Testing\",\n        data: local.savePayload.message,\n        rgb: local.savePayload.rgb\n    };\n}\nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    if (msg.payload.message === \"clear\"){\n        global.set(\"rxMessage\", false);\n        msg.clear = true;\n        local.savePayload = {};\n        context.set('data', local);\n        return msg;\n    }\n    local.savePayload = msg.payload;\n    local.timestamp = new Date();\n    global.set(\"rxMessage\", true);\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "f547860cc7f6c983",
+                "661b4d0dd001152d"
+            ]
+        ]
+    },
+    {
+        "id": "f547860cc7f6c983",
+        "type": "link out",
+        "z": "8b652d685b18afbb",
+        "name": "Page 4",
+        "mode": "link",
+        "links": [
+            "52d87a3036dd542f"
+        ],
+        "x": 705,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "5d30e7d5296270d6",
+        "type": "function",
+        "z": "8b652d685b18afbb",
+        "name": "Timestamp",
+        "func": "msg.payload = new Date()\nmsg.topic = 'Timestamp'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1bf4cc60c894723",
+        "type": "mqtt in",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "topic": "GlaserIsland/messages/#",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "900b995987962dbb",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 680,
+        "wires": [
+            [
+                "2d135fc40ad673a8"
+            ]
+        ]
+    },
+    {
+        "id": "2d135fc40ad673a8",
+        "type": "json",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 350,
+        "y": 680,
+        "wires": [
+            [
+                "85acafe1701abe53",
+                "98e85dbc08771399"
+            ]
+        ]
+    },
+    {
+        "id": "85acafe1701abe53",
+        "type": "debug",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "661b4d0dd001152d",
+        "type": "debug",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "e3be348048dbf72d",
+        "type": "debug",
+        "z": "8b652d685b18afbb",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 530,
+        "y": 20,
         "wires": []
     },
     {
@@ -502,7 +659,7 @@
         "type": "function",
         "z": "fd1063e3c4bc6fcc",
         "name": "BatVolt",
-        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.BatVoltage);\nvar rgbVal = \"255,255,255\"\nif (value>=24.8){\n    rgbVal = \"0,255,0\";\n} else if (value >= 24.0){\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"V\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
+        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.BatVoltage);\nvar rgbVal = \"255,255,255\" //white\nif (value>=24.9){\n    rgbVal = \"0,255,0\"; //green\n} else if (value >= 24.5){\n    rgbVal = \"255,255,0\"; //yellow\n} else {\n    rgbVal = \"255,0,0\"; //red\n}\nvar valueString = value.toFixed(1).toString() + \"V\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -521,7 +678,7 @@
         "type": "function",
         "z": "fd1063e3c4bc6fcc",
         "name": "BatSOC",
-        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.SOC);\nvar rgbVal = \"255,255,255\"\nif (value>=90.0){\n    rgbVal = \"0,255,0\";\n} else if (value >= 80.0){\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(0).toString() + \"%\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
+        "func": "if (msg.payload === \"clear\")\n{\n    return msg;\n}\nvar value = parseFloat(msg.payload.SOC);\nvar rgbVal = \"255,255,255\"\nif (value>=85.0){\n    rgbVal = \"0,255,0\"; //green\n} else if (value >= 75.0){\n    rgbVal = \"255,255,0\"; //yellow\n} else {\n    rgbVal = \"255,0,0\"; //red\n}\nvar valueString = value.toFixed(0).toString() + \"%\";\nmsg.payload = \n            {\n                data: valueString,\n                rgb: rgbVal\n            };\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -540,7 +697,7 @@
         "type": "function",
         "z": "3fd0aea8fc464cb1",
         "name": "WhizbangBatCurrent",
-        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value = parseFloat(msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\"\nif (value >= 0.0) {\n    rgbVal = \"0,255,0\";\n} else if (value >= -50.0) {\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"A\";\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
+        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value = parseFloat(msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\" //white\nif (value >= -2.0) {\n    rgbVal = \"0,255,0\"; //green\n} else if (value >= -50.0) {\n    rgbVal = \"255,255,0\"; //yellow\n} else {\n    rgbVal = \"255,0,0\"; //red\n}\nvar valueString = value.toFixed(1).toString() + \"A\";\n\nif (value>=20.0 || value <= -20.0)\n{\n    valueString = value.toFixed(0).toString() + \"A\";\n}\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -611,7 +768,7 @@
         "type": "function",
         "z": "3fd0aea8fc464cb1",
         "name": "BatWattsCalc",
-        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value  = 0.0 + (msg.payload.BatVoltage * msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\"\nif (value >= 0.0) {\n    rgbVal = \"0,255,0\";\n} else if (value >= -1400.0) {\n    rgbVal = \"0,255,255\";\n} else {\n    rgbVal = \"255,0,0\";\n}\nvar valueString = value.toFixed(1).toString() + \"W\";\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
+        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\nvar value  = 0.0 + (msg.payload.BatVoltage * msg.payload.WhizbangBatCurrent);\nvar rgbVal = \"255,255,255\" //white\n//base the colors on current so they match the current display.\nif (msg.payload.WhizbangBatCurrent >= -2.0) {\n    rgbVal = \"0,255,0\"; //green\n} else if (msg.payload.WhizbangBatCurrent >= -50.0) {\n    rgbVal = \"255,255,0\"; //yellow\n} else {\n    rgbVal = \"255,0,0\"; //red\n}\nvar valueString = value.toFixed(0).toString() + \"W\";\nif (value >= 1000 || value <= -1000)\n{\n    valueString = (value / 1000).toFixed(1).toString() + \"kW\";\n}\nmsg.payload =\n{\n    data: valueString,\n    rgb: rgbVal\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -652,7 +809,7 @@
         "rgb": "255,255,255",
         "font": "6x10.bdf",
         "prefix": "",
-        "source": "\"Charge St.\"",
+        "source": "\"Mode\"",
         "matrix": "f3187c569c35b386",
         "zLevel": "",
         "x": 560,
@@ -681,7 +838,7 @@
         "type": "function",
         "z": "0d561025dccaa477",
         "name": "ChargeState",
-        "func": "var floatMsg = {};\n\nif (msg.payload === \"clear\") {\n    return [msg, msg];\n}\nvar state = parseInt(msg.payload.ChargeState);\nvar stateStr = \"\";\nvar rgbVal = \"255,255,255\"\n\nswitch (state) {\n    case 0:\n        stateStr = \"Resting\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 3:\n        stateStr = \"Absorb\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 4:\n        stateStr = \"Bl-MPPT\";\n        rgbVal = \"0,255,0\";\n        break;\n    case 5:\n        var floatSecs = parseInt(msg.payload.FloatTimeTodaySeconds);\n        stateStr = \"Float\";\n        rgbVal = \"0,255,0\";\n        //floatSecs = (60*60*12)+(34*60)\n        if (floatSecs > 60) {\n            if (floatSecs > (60*60)){\n                var floatTime = (floatSecs / (60.0 * 60.0)).toFixed(1).toString() + ' hrs';\n            } else {\n                var floatTime = (floatSecs / 60.0).toFixed(0).toString() + ' min';\n            }\n            floatMsg.payload = {\n                data: floatTime,   \n               rgb: \"0,255,0\"\n            }\n        }\n        break;\n    case 6:\n        stateStr = \"Fl-MPPT\";\n        rgbVal = \"0,255,255\";\n        break;\n    case 7:\n        stateStr = \"Equal.\";\n        rgbVal = \"255,0.0\";\n        break;\n    case 10:\n        stateStr = \"HyprVOC\";\n        rgbVal = \"255,0.0\";\n        break;\n    case 18:\n        stateStr = \"Eq-MPPT\";\n        rgbVal = \"255,0.0\";\n        break;\n    default:\n        stateStr = \"Unk-\" + state.toString();\n        rgbVal = \"255,0.0\";\n}\nmsg.payload =\n{\n    data: stateStr,\n    rgb: rgbVal\n};\nreturn [msg,floatMsg];",
+        "func": "var floatMsg = {};\n\nif (msg.payload === \"clear\") {\n    return [msg, msg];\n}\nvar state = parseInt(msg.payload.ChargeState);\nvar stateStr = \"\";\nvar rgbVal = \"255,255,255\" //white\n\nswitch (state) {\n    case 0:\n        stateStr = \"Resting\";\n        rgbVal = \"0,255,0\"; //green\n        break;\n    case 3:\n        stateStr = \"Absorb\";\n        rgbVal = \"0,255,0\"; //green\n        break;\n    case 4:\n        stateStr = \"BulkMPPT\";\n        rgbVal = \"0,255,0\"; //green\n        break;\n    case 5:\n        var floatSecs = parseInt(msg.payload.FloatTimeTodaySeconds);\n        stateStr = \"Float\";\n        rgbVal = \"0,255,0\"; //green\n        //floatSecs = (60*60*12)+(34*60)\n        if (floatSecs > 60) {\n            if (floatSecs > (60*60)){\n                var floatTime = (floatSecs / (60.0 * 60.0)).toFixed(1).toString() + ' hrs';\n            } else {\n                var floatTime = (floatSecs / 60.0).toFixed(0).toString() + ' min';\n            }\n            floatMsg.payload = {\n                data: floatTime,   \n               rgb: \"0,255,0\" //green\n            }\n        }\n        break;\n    case 6:\n        stateStr = \"FlotMPPT\";\n        rgbVal = \"255,255,0\"; //yellow\n        break;\n    case 7:\n        stateStr = \"Equalize\";\n        rgbVal = \"255,0.0\"; //red\n        break;\n    case 10:\n        stateStr = \"HyperVOC\";\n        rgbVal = \"255,0.0\"; //red\n        break;\n    case 18:\n        stateStr = \"EqlzMPPT\";\n        rgbVal = \"255,0.0\"; //red\n        break;\n    default:\n        stateStr = \"Unk-\" + state.toString();\n        rgbVal = \"255,0.0\"; //red\n}\nmsg.payload =\n{\n    data: stateStr,\n    rgb: rgbVal\n};\nreturn [msg,floatMsg];",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -742,7 +899,7 @@
         "type": "debug",
         "z": "0d561025dccaa477",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -753,5 +910,306 @@
         "x": 730,
         "y": 380,
         "wires": []
+    },
+    {
+        "id": "98f7f990cd4925aa",
+        "type": "text-to-matrix",
+        "z": "54a21ce66a54310a",
+        "name": "Page 4 - Message",
+        "xOffset": "0",
+        "yOffset": "0",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "\"Message\"",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "52d87a3036dd542f",
+        "type": "link in",
+        "z": "54a21ce66a54310a",
+        "name": "Page 4 In",
+        "links": [
+            "f547860cc7f6c983"
+        ],
+        "x": 315,
+        "y": 240,
+        "wires": [
+            [
+                "98f7f990cd4925aa",
+                "8287706a498334b9"
+            ]
+        ]
+    },
+    {
+        "id": "8287706a498334b9",
+        "type": "function",
+        "z": "54a21ce66a54310a",
+        "name": "MessageFormat",
+        "func": "var msg2 = {};\nmsg2.payload = \n{\n    data: \" \",\n    rgb: \"0.0.0\"\n}\n\nif (msg.payload === \"clear\") {\n    return [msg, msg];\n}\n\nlet lines = msg.payload.data.split(\"/\")\nif (lines.length > 1)\n{\n    msg.payload.data = lines[0]\n    msg2.payload =\n    {\n        data: lines[1],\n        rgb: msg.payload.rgb\n    }\n}\nreturn [msg, msg2];",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 220,
+        "wires": [
+            [
+                "03f766e971fbdacd"
+            ],
+            [
+                "2483d466c06c9693",
+                "987021404de89331"
+            ]
+        ],
+        "outputLabels": [
+            "line1",
+            "line2"
+        ]
+    },
+    {
+        "id": "03f766e971fbdacd",
+        "type": "text-to-matrix",
+        "z": "54a21ce66a54310a",
+        "name": "MessageTextL1",
+        "xOffset": "5",
+        "yOffset": "10",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "987021404de89331",
+        "type": "debug",
+        "z": "54a21ce66a54310a",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "2483d466c06c9693",
+        "type": "text-to-matrix",
+        "z": "54a21ce66a54310a",
+        "name": "MessageTextL2",
+        "xOffset": "5",
+        "yOffset": "22",
+        "rgb": "255,255,255",
+        "font": "6x10.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 840,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "50c3d31a3c0859d7",
+        "type": "ui_form",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "label": "Message to LED Matrix",
+        "group": "86eedad9b66f38a7",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "options": [
+            {
+                "label": "Max 10 characters",
+                "value": "line1",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Max 10 characters",
+                "value": "line2",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
+                "label": "Display Time",
+                "value": "mins",
+                "type": "number",
+                "required": false,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "line1": "",
+            "line2": "",
+            "mins": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 210,
+        "y": 300,
+        "wires": [
+            [
+                "3c02573c226504de",
+                "276b0c0453b02be9"
+            ]
+        ]
+    },
+    {
+        "id": "3c02573c226504de",
+        "type": "function",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "func": "let msg2 = {}\nvar newMsg = {};\n\nvar local = context.get('data') || {};\nif (local.color === undefined) \n{\n    local.color = \"0,255,0\"\n}\n\nif (msg.topic===\"color\")\n{\n    //Remember the color that was set.\n    local.color = msg.payload.substr(4, msg.payload.length - 5);\n    context.set('data', local);\n    return ([null,null]);\n}\nelse if (msg.topic === \"clear\")\n{\n    newMsg.payload =\n    {\n        message: 'clear',\n        rgb: \"0.0.0\",\n        displayTime: 1\n    }\n    return([newMsg,null])\n}\nelse\n{\n    let len1 = msg.payload.line1.length\n    var len2 = -1\n    var theText = msg.payload.line1\n    if (msg.payload.line2 !== null) {\n        len2 = msg.payload.line2.length\n        if (len2>0) \n           theText = theText + \"/\" + msg.payload.line2\n    }\n    \n    if (len1 < 10 && len2 < 10) {\n\n        var theMins = 5;\n        if (msg.payload.mins != undefined)\n        {\n            theMins = msg.payload.mins\n        }\n\n        newMsg.payload = \n        {\n            message: theText,\n\n            rgb: local.color,\n            displayTime: theMins\n        }\n        return ([newMsg,null]);\n    }\n\n    if (len1 > 10 && len2 > 10) {\n        msg2.payload = { line1: \"too long-\"+msg.payload.line1,line2:\"too long-\"+msg.payload.line2 }\n        node.send([null, msg2])\n    }\n    if (len1 > 10) {\n        msg2.payload = { line1: \"too long-\"+msg.payload.line1, line2: msg.payload.line2 }\n        node.send([null, msg2])\n    }\n    if (len2 > 10) {\n        msg2.payload = { line2: \"too long-\"+msg.payload.line2, line1:msg.payload.line1 }\n        node.send([null, msg2])\n    }\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 180,
+        "wires": [
+            [
+                "276b0c0453b02be9",
+                "e87c872ee7c7cee5"
+            ],
+            [
+                "50c3d31a3c0859d7"
+            ]
+        ]
+    },
+    {
+        "id": "276b0c0453b02be9",
+        "type": "debug",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e703df59d159a9f6",
+        "type": "ui_colour_picker",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "label": "Message Color",
+        "group": "86eedad9b66f38a7",
+        "format": "rgb",
+        "outformat": "string",
+        "showSwatch": true,
+        "showPicker": true,
+        "showValue": true,
+        "showHue": false,
+        "showAlpha": false,
+        "showLightness": true,
+        "square": "false",
+        "dynOutput": "false",
+        "order": 2,
+        "width": "5",
+        "height": "3",
+        "passthru": true,
+        "topic": "color",
+        "topicType": "str",
+        "className": "",
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "3c02573c226504de",
+                "560af943d61e7b55"
+            ]
+        ]
+    },
+    {
+        "id": "e87c872ee7c7cee5",
+        "type": "mqtt out",
+        "z": "4d600d71ebf56760",
+        "name": "Messages",
+        "topic": "GlaserIsland/messages",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "900b995987962dbb",
+        "x": 950,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "560af943d61e7b55",
+        "type": "debug",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "0e0ca9438abc44bc",
+        "type": "ui_button",
+        "z": "4d600d71ebf56760",
+        "name": "",
+        "group": "86eedad9b66f38a7",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Clear Message",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "clear",
+        "topicType": "str",
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "3c02573c226504de"
+            ]
+        ]
     }
 ]
