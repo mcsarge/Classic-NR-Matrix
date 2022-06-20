@@ -266,7 +266,7 @@
         "type": "function",
         "z": "8b652d685b18afbb",
         "name": "SavePassPayload",
-        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    msg.payload = local.savePayload;\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    local.savePayload = msg.payload;\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
+        "func": "var local = context.get('data') || {};\nif (local.savePayload === undefined) \n{\n    local.savePayload = -999;\n    local.rxTime = 0;\n}\n\nif (msg.payload === \"display\")\n{\n    if (local.savePayload === -999)\n    {\n        return null;\n    }\n    msg.payload = local.savePayload;\n    msg.rxTime = local.rxTime;\n} \nelse if (msg.payload === \"clear\")\n{\n    msg.clear = true;\n}\nelse //got data, just store it.\n{\n    local.savePayload = msg.payload;\n    local.rxTime = new Date();\n    context.set('data', local);\n    return null;\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -650,7 +650,8 @@
             [
                 "6cb07edad23399c4",
                 "7f06e7199015ba03",
-                "55a160be56c8a705"
+                "55a160be56c8a705",
+                "a6bbbb0ac50aaf8b"
             ]
         ]
     },
@@ -691,6 +692,59 @@
                 "98b16eb891cbfe48"
             ]
         ]
+    },
+    {
+        "id": "a6bbbb0ac50aaf8b",
+        "type": "function",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "CheckRecentData",
+        "func": "if (msg.payload === \"clear\") {\n    return msg;\n}\n\n//Check to see if it has been a long time since the data changed.\n\n\nvar rxTime = msg.rxTime;\nvar nowDate = new Date();\nvar elapsedTime = (nowDate.getTime() - rxTime.getTime())/1000/60;\nvar elapsedTimeStr = elapsedTime.toFixed(0).toString();\nif (elapsedTime >= 31) { //Very Old Data\n    msg.payload =\n    {\n        data: \"VOD\",\n        rgb: \"255,0,0\"\n    }\n}\nelse if (elapsedTime >= 16){ //Old Data\n    msg.payload =\n    {\n        data: \"OD\",\n        rgb: \"255,255,0\" //yellow\n    }\n}\nelse {\n    msg.payload = \"clear\"\n    msg.clear = true;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "28d9b435f88185b8",
+                "4e9e048e03a966c5"
+            ]
+        ]
+    },
+    {
+        "id": "28d9b435f88185b8",
+        "type": "text-to-matrix",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "Data Age",
+        "xOffset": "50",
+        "yOffset": "1",
+        "rgb": "255,255,255",
+        "font": "5x7.bdf",
+        "prefix": "",
+        "source": "msg.payload",
+        "matrix": "f3187c569c35b386",
+        "zLevel": "",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4e9e048e03a966c5",
+        "type": "debug",
+        "z": "fd1063e3c4bc6fcc",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 360,
+        "wires": []
     },
     {
         "id": "2db16b8e787b901b",

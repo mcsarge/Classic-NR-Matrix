@@ -2,7 +2,9 @@
     "name": "Classic-NR-Matrix",
     "description": "LED Matrix run by Node-Red and communication with the ClassicDIY MQTT Server",
     "version": "0.0.1",
-    "dependencies": {},
+    "dependencies": {
+        "node-red-contrib-easybotics-led-matrix": "1.4.0"
+    },
     "node-red": {
         "settings": {
             "flowFile": "flows.json",
